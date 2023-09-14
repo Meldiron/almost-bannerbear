@@ -9,11 +9,15 @@ export default async ({ req, res, log, error }) => {
   const config = JSON.parse((await fs.readFile(path.join(__dirname, '../static/config.json'))).toString());
 
   const { theme, brandColor, logoPath } = config;
-  const { url, title } = req.query;
+
+  const url = decodeURIComponent(req.query.url);
+  const title = decodeURIComponent(req.query.title);
 
   const logoBase64 = await fs.readFile(path.join(__dirname, '../static/', logoPath), {
     encoding: 'base64',
   });
+
+  log(logoBase64);
 
   const themeColor = theme === 'dark' ? '#030304' : '#f9fafb';
   const urlParts = url.split('/').filter((part) => part !== '');
