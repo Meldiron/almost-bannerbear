@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "format": "prettier --write .",
-    "build": "babel src --out-dir build"
+    "build": "babel --presets @babel/preset-react src --out-dir build"
   },
   "dependencies": {
     "@babel/preset-react": "^7.22.15",
