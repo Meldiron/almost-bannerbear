@@ -17,8 +17,6 @@ export default async ({ req, res, log, error }) => {
     encoding: 'base64',
   });
 
-  log(logoBase64);
-
   const themeColor = theme === 'dark' ? '#030304' : '#f9fafb';
   const urlParts = url.split('/').filter((part) => part !== '');
   urlParts.unshift('home');
@@ -66,7 +64,7 @@ export default async ({ req, res, log, error }) => {
           <clipPath id="clip0_0_1">
             <rect width="1200" height="630" fill="${themeColor}" />
           </clipPath>
-          <image id="image0_0_1" width="2560" height="753" xlink:href="data:image/png;${logoBase64}" />
+          <image id="image0_0_1" width="2560" height="753" xlink:href="data:image/png;base64,${logoBase64}" />
         </defs>
       </svg>
     `;
