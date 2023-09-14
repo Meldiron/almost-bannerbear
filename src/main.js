@@ -84,8 +84,6 @@ export default async ({ req, res, log, error }) => {
       </svg>
     `;
 
-    log(Converter);
-
     const svgBuffer = Buffer.from(svg, "utf-8");
     const pngBuffer = await Converter.default(svgBuffer, {
       width: 1200,
