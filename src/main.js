@@ -1,6 +1,7 @@
 import axios from 'axios';
 import fs from 'fs/promises';
 import path from 'path';
+import * as Converter from 'convert-svg-to-png';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -83,8 +84,10 @@ export default async ({ req, res, log, error }) => {
       </svg>
     `;
 
-    return res.send(svg, 200, {
-      'Content-Type': 'image/svg+xml',
+    const png = await Converter.convert(svg);
+
+    return res.send(png, 200, {
+      'Content-Type': 'image/png',
     });
   }
 
