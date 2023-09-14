@@ -2,19 +2,15 @@
   "name": "starter-template",
   "version": "1.0.0",
   "description": "",
-  "main": "build/main.js",
+  "main": "src/main.js",
   "type": "module",
   "scripts": {
-    "format": "prettier --write .",
-    "build": "babel --presets @babel/preset-react src --out-dir build"
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "@babel/preset-react": "^7.22.15",
     "satori": "^0.10.4"
   },
   "devDependencies": {
-    "@babel/cli": "^7.22.15",
-    "@babel/core": "^7.22.17",
     "prettier": "^3.0.0"
   }
 }

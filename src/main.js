@@ -11,7 +11,13 @@ export default async ({ req, res, log, error }) => {
   const fontBold = await fs.readFile(path.join(__dirname, '../fonts/Nunito-Bold.ttf'));
 
   const svg = await satori(
-    <div style={{ color: 'black' }}>hello, world</div>,
+    {
+      type: 'div',
+      props: {
+        children: 'hello, world',
+        style: { color: 'black' },
+      },
+    },
     {
       width: 1200,
       height: 630,
