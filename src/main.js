@@ -1,7 +1,7 @@
 import axios from 'axios';
 import fs from 'fs/promises';
 import path from 'path';
-import * as Converter from 'convert-svg-to-png';
+import * as Converter from 'svg2png';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -39,7 +39,7 @@ export default async ({ req, res, log, error }) => {
     return part.charAt(0).toUpperCase() + part.slice(1);
   }).join('   /   ');
 
-  if(req.path === '/image') {
+  if(req.path === '/image.png') {
     const svg = `
       <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect width="1200" height="630" fill="${themeColor}" />
@@ -84,12 +84,18 @@ export default async ({ req, res, log, error }) => {
       </svg>
     `;
 
-    const png = await Converter.convert(svg);
+    log(Converter);
 
-    return res.send(png, 200, {
+    const svgBuffer = Buffer.from(svg, "utf-8");
+    const pngBuffer = await Converter.default(svgBuffer, {
+      width: 1200,
+      height: 630
+    })
+
+    return res.send(pngBuffer.toString('utf8'), 200, {
       'Content-Type': 'image/png',
     });
   }
 
-  return res.send("Use path /image");
+  return res.send("Use path /image.png");
 };
