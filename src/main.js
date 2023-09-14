@@ -1,3 +1,4 @@
+import axios from 'axios';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -5,17 +6,30 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default async ({ req, res, log, error }) => {
-  const config = JSON.parse((await fs.readFile(path.join(__dirname, '../static/config.json'))).toString());
+let cache = null;
+const getCache = async () => {
+  if(!cache) {
+    const config = JSON.parse((await fs.readFile(path.join(__dirname, '../static/config.json'))).toString());
+    const { theme, brandColor, logoPath } = config;
+    const logoBase64 = await fs.readFile(path.join(__dirname, '../static/', logoPath), {
+      encoding: 'base64',
+    });
+    const iconUrl = `https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/20/solid/${icon}.svg`;
+    const iconSvg = (await axios.get(iconUrl)).data;
+    const iconSvgPath = iconSvg.split("\n")[1].split('/>')[0] + ` stroke="url(#paint1_linear_0_1)" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>`;
 
-  const { theme, brandColor, logoPath } = config;
+    cache = { theme, brandColor, icon, logoBase64, iconSvgPath };
+  }
+
+  return cache;
+};
+
+export default async ({ req, res, log, error }) => {
+
+  const { logoBase64, theme, brandColor, iconSvgPath } = await getCache();
 
   const url = decodeURIComponent(req.query.url);
   const title = decodeURIComponent(req.query.title);
-
-  const logoBase64 = await fs.readFile(path.join(__dirname, '../static/', logoPath), {
-    encoding: 'base64',
-  });
 
   const themeColor = theme === 'dark' ? '#030304' : '#f9fafb';
   const urlParts = url.split('/').filter((part) => part !== '');
@@ -31,6 +45,7 @@ export default async ({ req, res, log, error }) => {
         <g clip-path="url(#clip0_0_1)">
           <rect width="1200" height="630" fill="${themeColor}" />
           <circle opacity="0.4" cx="1163" r="590" fill="url(#paint0_radial_0_1)" />
+          ${iconSvgPath}
           <path d="M852.947 423.643C835.517 422.121 817.835 421.36 800 421.36H781C750.765 421.36 721.769 409.336 700.39 387.933C679.011 366.53 667 337.502 667 307.233C667 276.965 679.011 247.936 700.39 226.533C721.769 205.13 750.765 193.106 781 193.106H800C817.835 193.106 835.517 192.345 852.947 190.823M852.947 423.643C859.356 448.041 867.741 471.627 877.9 494.224C884.157 508.173 879.42 524.912 866.171 532.546L849.527 542.183C835.568 550.248 817.607 545.15 810.843 530.491C794.789 495.722 782.557 459.309 774.363 421.893M852.947 423.643C842.99 385.644 837.967 346.518 838 307.233C838 267.01 843.193 228.004 852.947 190.823M852.947 423.643C931.012 430.341 1007.03 452.177 1076.77 487.935M852.947 190.823C931.012 184.126 1007.03 162.29 1076.77 126.532M1076.77 487.935C1073.78 497.572 1070.56 507.057 1067.14 516.467M1076.77 487.935C1090.55 443.465 1099.17 397.553 1102.45 351.109M1076.77 126.532C1073.8 116.942 1070.59 107.429 1067.14 98M1076.77 126.532C1090.55 171.002 1099.17 216.913 1102.45 263.358M1102.45 263.358C1114.99 273.832 1123 289.607 1123 307.233C1123 324.86 1114.99 340.634 1102.45 351.109M1102.45 263.358C1104.53 292.571 1104.53 321.895 1102.45 351.109" stroke="url(#paint1_linear_0_1)" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>
           
           <text fill="${brandColor}" xml:space="preserve" style="white-space: pre" font-family="Nunito" font-size="24" font-weight="600" letter-spacing="0.025em">
