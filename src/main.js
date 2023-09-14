@@ -10,7 +10,7 @@ let cache = null;
 const getCache = async () => {
   if(!cache) {
     const config = JSON.parse((await fs.readFile(path.join(__dirname, '../static/config.json'))).toString());
-    const { theme, brandColor, logoPath } = config;
+    const { theme, brandColor, logoPath, icon } = config;
     const logoBase64 = await fs.readFile(path.join(__dirname, '../static/', logoPath), {
       encoding: 'base64',
     });
