@@ -11,7 +11,7 @@ export default async ({ req, res, log, error }) => {
   const brandColor = '#f02e65';
   const brandIconUrl = "https://appwrite.io/images/appwrite.svg";
 
-  const themeColor = theme === 'dark' ? '#f02e65' : '#f9fafb';
+  const themeColor = theme === 'dark' ? '#030304' : '#f9fafb';
 
   if(req.path === '/image') {
     const fontSemibold = await fs.readFile(path.join(__dirname, '../fonts/Nunito-SemiBold.ttf'));
