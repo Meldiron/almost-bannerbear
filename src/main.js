@@ -88,5 +88,7 @@ export default async ({ req, res, log, error }) => {
     });
   }
 
-  return res.send("Use path /image.svg");
+  const f = await fs.readFile(path.join(__dirname, '../test-resvg.png'));
+
+  return res.send(f);
 };
