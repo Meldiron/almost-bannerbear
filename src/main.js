@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default async ({ req, res, log, error }) => {
-    if(req.path === 'image') {
+    if(req.path === '/image') {
     const fontSemibold = await fs.readFile(path.join(__dirname, '../fonts/Nunito-SemiBold.ttf'));
     const fontBold = await fs.readFile(path.join(__dirname, '../fonts/Nunito-Bold.ttf'));
 
