@@ -7,7 +7,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default async ({ req, res, log, error }) => {
-    if(req.path === '/image') {
+  const theme = 'dark'; // dark / light
+  const brandColor = '#f02e65';
+  const brandIconUrl = "https://appwrite.io/images/appwrite.svg";
+
+  const themeColor = theme === 'dark' ? '#f02e65' : '#f9fafb';
+
+  if(req.path === '/image') {
     const fontSemibold = await fs.readFile(path.join(__dirname, '../fonts/Nunito-SemiBold.ttf'));
     const fontBold = await fs.readFile(path.join(__dirname, '../fonts/Nunito-Bold.ttf'));
 
@@ -15,8 +21,21 @@ export default async ({ req, res, log, error }) => {
       {
         type: 'div',
         props: {
-          children: 'hello, world',
-          style: { backgroundColor: 'black', color: 'white', width: '100vw', height: '100vh' },
+          children: {
+            type: 'div',
+            props: {
+              children: {
+                type: 'img',
+                props: {
+                  src: brandIconUrl,
+                  height: "50",
+                  style: { height: "50px" },
+                },
+              },
+              style: { position: "absolute", left: "5rem", top: "5rem" },
+            },
+          },
+          style: { backgroundColor: themeColor, width: '100vw', height: '100vh' },
         },
       },
       {
