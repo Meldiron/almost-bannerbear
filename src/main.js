@@ -16,7 +16,7 @@ const getCache = async () => {
     });
     const iconUrl = `https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/20/solid/${icon}.svg`;
     const iconSvg = (await axios.get(iconUrl)).data;
-    const iconSvgPath = iconSvg.split("\n")[1].split('/>')[0] + ` stroke="url(#paint1_linear_0_1)" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>`;
+    const iconSvgPath = iconSvg.split("\n")[1].split('/>')[0] + ` stroke="url(#paint1_linear_0_1)" stroke-width="1.5" transform="matrix(25 0 0 25 25 0)" stroke-linecap="round" stroke-linejoin="round" transform="matrix(25 0 0 25 25 0) translate(24, 2)" />`;
 
     cache = { theme, brandColor, icon, logoBase64, iconSvgPath };
   }
@@ -27,8 +27,6 @@ const getCache = async () => {
 export default async ({ req, res, log, error }) => {
 
   const { logoBase64, theme, brandColor, iconSvgPath } = await getCache();
-
-  log(iconSvgPath);
 
   const url = decodeURIComponent(req.query.url);
   const title = decodeURIComponent(req.query.title);
@@ -70,12 +68,12 @@ export default async ({ req, res, log, error }) => {
             <stop offset="0.703125" stop-color="#F02E65" stop-opacity="0" />
             <stop offset="1" stop-color="#F02E65" stop-opacity="0" />
           </radialGradient>
-          <linearGradient id="paint1_linear_0_1" x1="895" y1="98" x2="895" y2="546" gradientUnits="userSpaceOnUse">
-            <stop offset="0.114583" stop-color="#F02E65" stop-opacity="0.1" />
-            <stop offset="0.328125" stop-color="#F02E65" stop-opacity="0.4" />
-            <stop offset="0.447917" stop-color="#F02E65" stop-opacity="0.7" />
-            <stop offset="0.572917" stop-color="#F02E65" stop-opacity="0.49" />
-            <stop offset="1" stop-color="#F02E65" stop-opacity="0.3" />
+          <linearGradient id="paint1_linear_0_1" x1="0" y1="0" x2="0" y2="18" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#F02E65" stop-opacity="0.1" />
+            <stop offset="0.5" stop-color="#F02E65" stop-opacity="0.4" />
+            <stop offset="0.6" stop-color="#F02E65" stop-opacity="0.7" />
+            <stop offset="0.7" stop-color="#F02E65" stop-opacity="0.4" />
+            <stop offset="1" stop-color="#F02E65" stop-opacity="0.1" />
           </linearGradient>
           <clipPath id="clip0_0_1">
             <rect width="1200" height="630" fill="${themeColor}" />
