@@ -29,13 +29,13 @@ export default async ({ req, res, log, error }) => {
                 props: {
                   src: brandIconUrl,
                   height: "50",
-                  style: { height: "50px" },
+                  style: { display: "flex", height: "50px" },
                 },
               },
-              style: { position: "absolute", left: "5rem", top: "5rem" },
+              style: { display: "flex", position: "absolute", left: "5rem", top: "5rem" },
             },
           },
-          style: { backgroundColor: themeColor, width: '100vw', height: '100vh' },
+          style: { display: "flex", backgroundColor: themeColor, width: '100vw', height: '100vh' },
         },
       },
       {
