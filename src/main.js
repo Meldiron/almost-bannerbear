@@ -84,6 +84,19 @@ export default async ({ req, res, log, error }) => {
       </svg>
     `;
 
+    const opts = {
+      background: 'rgba(238, 235, 230, .9)',
+      fitTo: {
+        mode: 'width',
+        value: 1200,
+      },
+      font: {
+        fontFiles: ['./example/SourceHanSerifCN-Light-subset.ttf'], // Load custom fonts.
+        loadSystemFonts: false, // It will be faster to disable loading system fonts.
+        defaultFontFamily: 'Source Han Serif CN Light',
+      },
+    };
+
     const resvg = new Resvg(svg, opts);
     const pngData = resvg.render();
     const pngBuffer = pngData.asPng();
