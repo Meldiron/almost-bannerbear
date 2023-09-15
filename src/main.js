@@ -48,12 +48,12 @@ export default async ({ req, res, log, error }) => {
           <circle opacity="0.4" cx="1163" r="590" fill="url(#paint0_radial_0_1)" />
           ${iconSvgPath}
           
-          <text fill="${brandColor}" xml:space="preserve" style="white-space: pre" font-size="24" font-weight="600" letter-spacing="0.025em">
+          <text fill="${brandColor}" xml:space="preserve" style="white-space: pre" font-family="Nunito" font-size="24" font-weight="600" letter-spacing="0.025em">
             <tspan x="70" y="450">${urlText}</tspan>
           </text>
 
           <rect x="70" y="70" width="237.606" height="70" fill="url(#pattern0)" />
-          <text fill="white" xml:space="preserve" style="white-space: pre" font-size="72" font-weight="bold" letter-spacing="0.025em">
+          <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Nunito" font-size="72" font-weight="bold" letter-spacing="0.025em">
             <tspan x="70" y="544.688">${title}</tspan>
           </text>
         </g>
@@ -62,7 +62,7 @@ export default async ({ req, res, log, error }) => {
             @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700');
           </style>
           <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-            <use xlink:href="#image0_0_1" transform="matrix(1 0 0 1 1 0)" />
+            <use xlink:href="#image0_0_1" transform="matrix(0.000391243 0 0 0.00132802 -0.000790745 0)" />
           </pattern>
           <radialGradient id="paint0_radial_0_1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1163) rotate(90) scale(590)">
             <stop stop-color="#F02E65" />
@@ -79,7 +79,7 @@ export default async ({ req, res, log, error }) => {
           <clipPath id="clip0_0_1">
             <rect width="1200" height="630" fill="${themeColor}" />
           </clipPath>
-          <image id="image0_0_1" height="70" xlink:href="data:image/png;base64,${logoBase64}" />
+          <image id="image0_0_1" width="2560" xlink:href="data:image/png;base64,${logoBase64}" />
         </defs>
       </svg>
     `;
@@ -92,7 +92,7 @@ export default async ({ req, res, log, error }) => {
       },
       font: {
         fontFiles: ['../fonts/Nunito-Bold.ttf', '../fonts/Nunito-SemiBold.ttf'],
-        loadSystemFonts: false,
+        loadSystemFonts: true,
         defaultFontFamily: 'Nunito',
       },
     };
