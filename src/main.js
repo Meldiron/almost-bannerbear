@@ -91,7 +91,7 @@ export default async ({ req, res, log, error }) => {
         value: 1200,
       },
       font: {
-        fontFiles: ['../fonts/Nunito-Bold.ttf', '../fonts/Nunito-SemiBold.ttf'],
+        fontFiles: ['./fonts/Nunito-Bold.ttf', './fonts/Nunito-SemiBold.ttf'],
         loadSystemFonts: true,
         defaultFontFamily: 'Nunito',
       },
