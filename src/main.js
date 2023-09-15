@@ -94,9 +94,10 @@ export default async ({ req, res, log, error }) => {
         fontFiles: ['./fonts/Nunito-Bold.ttf', './fonts/Nunito-SemiBold.ttf'],
         loadSystemFonts: true,
         defaultFontFamily: 'Nunito',
-      },
-      logLevel: 'debug'
+      }
     };
+
+    isContext.log(svg);
 
     const resvg = new Resvg(svg, opts);
     const pngData = resvg.render();
