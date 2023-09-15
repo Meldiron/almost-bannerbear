@@ -95,6 +95,7 @@ export default async ({ req, res, log, error }) => {
         loadSystemFonts: true,
         defaultFontFamily: 'Nunito',
       },
+      logLevel: 'debug'
     };
 
     const resvg = new Resvg(svg, opts);
