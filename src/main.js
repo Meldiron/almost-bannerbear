@@ -97,7 +97,7 @@ export default async ({ req, res, log, error }) => {
       }
     };
 
-    isContext.log(svg);
+    log(svg);
 
     const resvg = new Resvg(svg, opts);
     const pngData = resvg.render();
