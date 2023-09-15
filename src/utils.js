@@ -1,7 +1,6 @@
 import axios from 'axios';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,7 +11,7 @@ const __dirname = path.dirname(__filename);
  * @returns {string} absulte path
  */
 export function getAbsolutePath(relativePath) {
-  return fs.readFileSync(path.join(__dirname, relativePath)).toString();
+  return path.join(__dirname, relativePath);
 }
 
 /**
