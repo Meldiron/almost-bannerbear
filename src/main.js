@@ -1,42 +1,24 @@
-import axios from 'axios';
-import fs from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { Resvg } from "@resvg/resvg-js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-let cache = null;
-const getCache = async () => {
-  if(!cache) {
-    const config = JSON.parse((await fs.readFile(path.join(__dirname, '../static/config.json'))).toString());
-    const { theme, brandColor, icon } = config;
-    const iconUrl = `https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/20/solid/${icon}.svg`;
-    const iconSvg = (await axios.get(iconUrl)).data;
-    const iconSvgPath = iconSvg.split("\n")[1].split('/>')[0] + ` stroke="url(#paint1_linear_0_1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(25 0 0 25 25 0) translate(24, 2)" />`;
-
-    cache = { theme, brandColor, icon, iconSvgPath };
-  }
-
-  return cache;
-};
+import { getAbsolutePath, getIcon } from './utils';
 
 export default async ({ req, res, log, error }) => {
-
-  const { logoBase64, theme, brandColor, iconSvgPath } = await getCache();
-
-  const url = decodeURIComponent(req.query.url);
-  const title = decodeURIComponent(req.query.title);
-
-  const themeColor = theme === 'dark' ? '#030304' : '#f9fafb';
-  const urlParts = url.split('/').filter((part) => part !== '');
-  urlParts.unshift('home');
-  const urlText = urlParts.map((part) => {
-    return part.charAt(0).toUpperCase() + part.slice(1);
-  }).join('   /   ');
-
+  // Endpoint to render OG image
   if(req.path === '/image.png') {
+
+    // Extract input from request
+    const theme = process.env.THEME ?? 'dark';
+    const brandColor = process.env.BRAND_COLOR ?? '#f02e65';
+
+    const url = decodeURIComponent(req.query.url ?? '');
+    const title = decodeURIComponent(req.query.title ?? 'Website');
+    const icon = decodeURIComponent(req.query.icon ?? 'globe-alt');
+
+    // Preparation before render
+    const iconSvgPath = await getIcon(icon);
+    const themeColor = theme === 'dark' ? '#030304' : '#f9fafb';
+    const urlText = ['home', ...url.split('/').filter((part) => part !== '')].map((part) => uppercaseFirst(part)).join('   /   ');
+
+    // Generate SVG
     const svg = `
       <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect width="1200" height="630" fill="${themeColor}" />
@@ -76,29 +58,29 @@ export default async ({ req, res, log, error }) => {
       </svg>
     `;
 
-    const opts = {
+    // Convert SVG to PNG
+    const resvg = new Resvg(svg, {
       background: 'rgba(0,0,0,1)',
       fitTo: {
         mode: 'width',
         value: 1200,
       },
       font: {
-        fontFiles: [path.join(__dirname, '../fonts/Nunito-Bold.ttf'), path.join(__dirname, '../fonts/Nunito-SemiBold.ttf')],
+        fontFiles: [ getAbsolutePath('../fonts/Nunito-Bold.ttf'), getAbsolutePath('../fonts/Nunito-SemiBold.ttf') ],
         loadSystemFonts: true,
         defaultFontFamily: 'Nunito',
       }
-    };
+    });
 
-    log(svg);
-
-    const resvg = new Resvg(svg, opts);
     const pngData = resvg.render();
     const pngBuffer = pngData.asPng();
 
+    // Return PNG OG image
     return res.send(pngBuffer, 200, {
       'Content-Type': 'image/png',
     });
   }
 
-  return res.send("Use path /image.png"); // 404
+  // 404 page
+  return res.send("Use path /image.png");
 };
