@@ -55,12 +55,12 @@ export default async ({ req, res }) => {
             <stop offset="1" stop-color="${brandColor}" stop-opacity="0.1" />
           </linearGradient>
           <linearGradient id="paint2_linear_3_2" x1="267" y1="70" x2="267" y2="157" gradientUnits="userSpaceOnUse">
-            <stop stop-color="${brandColor}" stop-opacity="0"/>
-            <stop offset="0.328125" stop-color="${brandColor}" stop-opacity="0.5"/>
-            <stop offset="0.479167" stop-color="${brandColor}"/>
-            <stop offset="0.5625" stop-color="${brandColor}"/>
-            <stop offset="0.734375" stop-color="${brandColor}" stop-opacity="0.5"/>
-            <stop offset="1" stop-color="${brandColor}" stop-opacity="0"/>
+            <stop offset="0" stop-color="${brandColor}" stop-opacity="0.2"/>
+            <stop offset="0.3" stop-color="${brandColor}" stop-opacity="0.5"/>
+            <stop offset="0.45" stop-color="${brandColor}"  stop-opacity="0.7" />
+            <stop offset="0.55" stop-color="${brandColor}"  stop-opacity="0.7" />
+            <stop offset="0.7" stop-color="${brandColor}" stop-opacity="0.5"/>
+            <stop offset="1" stop-color="${brandColor}" stop-opacity="0.2"/>
           </linearGradient>
           <clipPath id="clip0_0_1">
             <rect width="1200" height="630" fill="${themeColor}" />
