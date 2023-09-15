@@ -32,6 +32,6 @@ export async function getIcon(name) {
  * @param {string} text
  * @returns {string}
  */
-export async function uppercaseFirst(text) {
+export function uppercaseFirst(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
