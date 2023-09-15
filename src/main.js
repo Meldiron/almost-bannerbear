@@ -93,5 +93,5 @@ export default async ({ req, res, log, error }) => {
     });
   }
 
-  return res.send("Use path /image.png");
+  return res.send("Use path /image.png"); // 404
 };
