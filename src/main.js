@@ -62,7 +62,7 @@ export default async ({ req, res, log, error }) => {
             @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700');
           </style>
           <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-            <use xlink:href="#image0_0_1" />
+            <use xlink:href="#image0_0_1" transform="matrix(1 0 0 1 1 0)" />
           </pattern>
           <radialGradient id="paint0_radial_0_1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1163) rotate(90) scale(590)">
             <stop stop-color="#F02E65" />
