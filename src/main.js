@@ -48,12 +48,12 @@ export default async ({ req, res, log, error }) => {
           <circle opacity="0.4" cx="1163" r="590" fill="url(#paint0_radial_0_1)" />
           ${iconSvgPath}
           
-          <text fill="${brandColor}" xml:space="preserve" style="white-space: pre" font-family="Nunito" font-size="24" font-weight="600" letter-spacing="0.025em">
+          <text fill="${brandColor}" xml:space="preserve" style="white-space: pre" font-size="24" font-weight="600" letter-spacing="0.025em">
             <tspan x="70" y="450">${urlText}</tspan>
           </text>
 
           <rect x="70" y="70" width="237.606" height="70" fill="url(#pattern0)" />
-          <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Nunito" font-size="72" font-weight="bold" letter-spacing="0.025em">
+          <text fill="white" xml:space="preserve" style="white-space: pre" font-size="72" font-weight="bold" letter-spacing="0.025em">
             <tspan x="70" y="544.688">${title}</tspan>
           </text>
         </g>
