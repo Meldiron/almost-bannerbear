@@ -45,11 +45,11 @@ export default async ({ req, res, log, error }) => {
           <circle opacity="0.4" cx="1163" r="590" fill="url(#paint0_radial_0_1)" />
           ${iconSvgPath}
           
-          <text fill="${brandColor}" font-family="serif" font-size="24" font-weight="600" letter-spacing="0.025em">
+          <text fill="${brandColor}" xml:space="preserve" style="white-space: pre" font-size="24" font-weight="600" letter-spacing="0.025em">
             <tspan x="70" y="450">${urlText}</tspan>
           </text>
 
-          <text fill="white" font-family="serif" font-size="72" font-weight="bold" letter-spacing="0.025em">
+          <text fill="white" xml:space="preserve" style="white-space: pre" font-size="72" font-weight="bold" letter-spacing="0.025em">
             <tspan x="70" y="544.688">${title}</tspan>
           </text>
         </g>
@@ -83,7 +83,9 @@ export default async ({ req, res, log, error }) => {
         value: 1200,
       },
       font: {
-        loadSystemFonts: true
+        fontFiles: [path.join(__dirname, '../fonts/Nunito-Bold.ttf'), path.join(__dirname, '../fonts/Nunito-SemiBold.ttf')],
+        loadSystemFonts: true,
+        defaultFontFamily: 'Nunito',
       }
     };
 
