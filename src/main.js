@@ -2,6 +2,7 @@ import axios from 'axios';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { Resvg } from "@resvg/resvg-js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,7 +39,7 @@ export default async ({ req, res, log, error }) => {
     return part.charAt(0).toUpperCase() + part.slice(1);
   }).join('   /   ');
 
-  if(req.path === '/image.svg') {
+  if(req.path === '/image.png') {
     const svg = `
       <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect width="1200" height="630" fill="${themeColor}" />
@@ -83,10 +84,14 @@ export default async ({ req, res, log, error }) => {
       </svg>
     `;
 
-    return res.send(svg, 200, {
-      'Content-Type': 'image/svg+xml',
+    const resvg = new Resvg(svg, opts);
+    const pngData = resvg.render();
+    const pngBuffer = pngData.asPng();
+
+    return res.send(pngBuffer.toString('base64'), 200, {
+      'Content-Type': 'image/png',
     });
   }
 
-  return res.send("Use path /image.svg");
+  return res.send("Use path /image.png");
 };
