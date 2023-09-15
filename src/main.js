@@ -36,6 +36,9 @@ export default async ({ req, res }) => {
             <tspan x="70" y="544.688">${title}</tspan>
           </text>
 
+          <text fill="url(#paint2_linear_3_2)" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="72" font-weight="bold" letter-spacing="0.025em"><tspan x="70" y="139.682">${brandName.toUpperCase()}</tspan></text>
+
+
           <text fill="${brandColor}" fill-opacity="0.1" stroke="${brandColor}" stroke-opacity="0.7" xml:space="preserve" style="white-space: pre" font-family="Nunito" font-size="72" font-weight="bold" letter-spacing="0.05em"><tspan x="70" y="142.688">${brandName}</tspan></text>
         </g>
         <defs>
@@ -53,6 +56,14 @@ export default async ({ req, res }) => {
             <stop offset="0.6" stop-color="#F02E65" stop-opacity="0.7" />
             <stop offset="0.7" stop-color="#F02E65" stop-opacity="0.4" />
             <stop offset="1" stop-color="#F02E65" stop-opacity="0.1" />
+          </linearGradient>
+          <linearGradient id="paint2_linear_3_2" x1="267" y1="70" x2="267" y2="157" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#F02E65" stop-opacity="0"/>
+            <stop offset="0.328125" stop-color="#F02E65" stop-opacity="0.5"/>
+            <stop offset="0.479167" stop-color="#F02E65"/>
+            <stop offset="0.5625" stop-color="#F02E65"/>
+            <stop offset="0.734375" stop-color="#F02E65" stop-opacity="0.5"/>
+            <stop offset="1" stop-color="#F02E65" stop-opacity="0"/>
           </linearGradient>
           <clipPath id="clip0_0_1">
             <rect width="1200" height="630" fill="${themeColor}" />
