@@ -1,5 +1,5 @@
 import { Resvg } from "@resvg/resvg-js";
-import { getAbsolutePath, getIcon } from './utils';
+import { getAbsolutePath, getIcon } from './utils.js';
 
 export default async ({ req, res, log, error }) => {
   // Endpoint to render OG image
