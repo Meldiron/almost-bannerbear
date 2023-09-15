@@ -11,15 +11,12 @@ let cache = null;
 const getCache = async () => {
   if(!cache) {
     const config = JSON.parse((await fs.readFile(path.join(__dirname, '../static/config.json'))).toString());
-    const { theme, brandColor, logoPath, icon } = config;
-    const logoBase64 = await fs.readFile(path.join(__dirname, '../static/', logoPath), {
-      encoding: 'base64',
-    });
+    const { theme, brandColor, icon } = config;
     const iconUrl = `https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/20/solid/${icon}.svg`;
     const iconSvg = (await axios.get(iconUrl)).data;
     const iconSvgPath = iconSvg.split("\n")[1].split('/>')[0] + ` stroke="url(#paint1_linear_0_1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(25 0 0 25 25 0) translate(24, 2)" />`;
 
-    cache = { theme, brandColor, icon, logoBase64, iconSvgPath };
+    cache = { theme, brandColor, icon, iconSvgPath };
   }
 
   return cache;
@@ -48,13 +45,11 @@ export default async ({ req, res, log, error }) => {
           <circle opacity="0.4" cx="1163" r="590" fill="url(#paint0_radial_0_1)" />
           ${iconSvgPath}
           
-          <text fill="${brandColor}" xml:space="preserve" style="white-space: pre" font-family="Nunito" font-size="24" font-weight="600" letter-spacing="0.025em">
+          <text fill="${brandColor}" xml:space="preserve" style="white-space: pre" font-size="24" font-weight="600" letter-spacing="0.025em">
             <tspan x="70" y="450">${urlText}</tspan>
           </text>
 
-          <image href="data:image/png;base64,${logoBase64}" x="70" y="70" width="237" height="70" />
-
-          <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Nunito" font-size="72" font-weight="bold" letter-spacing="0.025em">
+          <text fill="white" xml:space="preserve" style="white-space: pre" font-size="72" font-weight="bold" letter-spacing="0.025em">
             <tspan x="70" y="544.688">${title}</tspan>
           </text>
         </g>
@@ -88,9 +83,7 @@ export default async ({ req, res, log, error }) => {
         value: 1200,
       },
       font: {
-        fontFiles: ['./fonts/Nunito-Bold.ttf', './fonts/Nunito-SemiBold.ttf'],
-        loadSystemFonts: true,
-        defaultFontFamily: 'Nunito',
+        loadSystemFonts: true
       }
     };
 
