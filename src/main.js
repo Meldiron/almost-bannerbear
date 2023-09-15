@@ -10,7 +10,7 @@ export default async ({ req, res }) => {
     const brandColor = process.env.BRAND_COLOR ?? '#f02e65';
     const brandName = process.env.BRAND_NAME ?? 'Website';
 
-    const url = decodeURIComponent(req.query.url ?? '');
+    const url = decodeURIComponent(req.query.url ?? '/template');
     const title = decodeURIComponent(req.query.title ?? 'Hello World');
     const icon = decodeURIComponent(req.query.icon ?? 'globe-alt');
 
