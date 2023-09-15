@@ -8,9 +8,10 @@ export default async ({ req, res }) => {
     // Extract input from request
     const theme = process.env.THEME ?? 'dark';
     const brandColor = process.env.BRAND_COLOR ?? '#f02e65';
+    const brandName = process.env.BRAND_NAME ?? 'Website';
 
     const url = decodeURIComponent(req.query.url ?? '');
-    const title = decodeURIComponent(req.query.title ?? 'Website');
+    const title = decodeURIComponent(req.query.title ?? 'Hello World');
     const icon = decodeURIComponent(req.query.icon ?? 'globe-alt');
 
     // Preparation before render
@@ -34,6 +35,8 @@ export default async ({ req, res }) => {
           <text fill="white" xml:space="preserve" style="white-space: pre" font-size="72" font-weight="bold" letter-spacing="0.025em">
             <tspan x="70" y="544.688">${title}</tspan>
           </text>
+
+          <text fill="${brandColor}" fill-opacity="0.1" stroke="${brandColor}" stroke-opacity="0.7" xml:space="preserve" style="white-space: pre" font-family="Nunito" font-size="72" font-weight="bold" letter-spacing="0.05em"><tspan x="70" y="142.688">${brandName}</tspan></text>
         </g>
         <defs>
           <style type="text/css">
