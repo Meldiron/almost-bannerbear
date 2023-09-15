@@ -37,33 +37,30 @@ export default async ({ req, res }) => {
           </text>
 
           <text fill="url(#paint2_linear_3_2)" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="72" font-weight="bold" letter-spacing="0.025em"><tspan x="70" y="139.682">${brandName.toUpperCase()}</tspan></text>
-
-
-          <text fill="${brandColor}" fill-opacity="0.1" stroke="${brandColor}" stroke-opacity="0.7" xml:space="preserve" style="white-space: pre" font-family="Nunito" font-size="72" font-weight="bold" letter-spacing="0.05em"><tspan x="70" y="142.688">${brandName}</tspan></text>
         </g>
         <defs>
           <style type="text/css">
             @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700');
           </style>
           <radialGradient id="paint0_radial_0_1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1163) rotate(90) scale(590)">
-            <stop stop-color="#F02E65" />
-            <stop offset="0.703125" stop-color="#F02E65" stop-opacity="0" />
-            <stop offset="1" stop-color="#F02E65" stop-opacity="0" />
+            <stop stop-color="${brandColor}" />
+            <stop offset="0.703125" stop-color="${brandColor}" stop-opacity="0" />
+            <stop offset="1" stop-color="${brandColor}" stop-opacity="0" />
           </radialGradient>
           <linearGradient id="paint1_linear_0_1" x1="0" y1="0" x2="0" y2="18" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#F02E65" stop-opacity="0.1" />
-            <stop offset="0.5" stop-color="#F02E65" stop-opacity="0.4" />
-            <stop offset="0.6" stop-color="#F02E65" stop-opacity="0.7" />
-            <stop offset="0.7" stop-color="#F02E65" stop-opacity="0.4" />
-            <stop offset="1" stop-color="#F02E65" stop-opacity="0.1" />
+            <stop offset="0" stop-color="${brandColor}" stop-opacity="0.1" />
+            <stop offset="0.5" stop-color="${brandColor}" stop-opacity="0.4" />
+            <stop offset="0.6" stop-color="${brandColor}" stop-opacity="0.7" />
+            <stop offset="0.7" stop-color="${brandColor}" stop-opacity="0.4" />
+            <stop offset="1" stop-color="${brandColor}" stop-opacity="0.1" />
           </linearGradient>
           <linearGradient id="paint2_linear_3_2" x1="267" y1="70" x2="267" y2="157" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#F02E65" stop-opacity="0"/>
-            <stop offset="0.328125" stop-color="#F02E65" stop-opacity="0.5"/>
-            <stop offset="0.479167" stop-color="#F02E65"/>
-            <stop offset="0.5625" stop-color="#F02E65"/>
-            <stop offset="0.734375" stop-color="#F02E65" stop-opacity="0.5"/>
-            <stop offset="1" stop-color="#F02E65" stop-opacity="0"/>
+            <stop stop-color="${brandColor}" stop-opacity="0"/>
+            <stop offset="0.328125" stop-color="${brandColor}" stop-opacity="0.5"/>
+            <stop offset="0.479167" stop-color="${brandColor}"/>
+            <stop offset="0.5625" stop-color="${brandColor}"/>
+            <stop offset="0.734375" stop-color="${brandColor}" stop-opacity="0.5"/>
+            <stop offset="1" stop-color="${brandColor}" stop-opacity="0"/>
           </linearGradient>
           <clipPath id="clip0_0_1">
             <rect width="1200" height="630" fill="${themeColor}" />
