@@ -85,15 +85,15 @@ export default async ({ req, res, log, error }) => {
     `;
 
     const opts = {
-      background: 'rgba(238, 235, 230, .9)',
+      background: 'rgba(0,0,0,1)',
       fitTo: {
         mode: 'width',
         value: 1200,
       },
       font: {
-        fontFiles: ['./example/SourceHanSerifCN-Light-subset.ttf'], // Load custom fonts.
-        loadSystemFonts: false, // It will be faster to disable loading system fonts.
-        defaultFontFamily: 'Source Han Serif CN Light',
+        fontFiles: ['../fonts/Nunito-Bold.ttf', '../fonts/Nunito-SemiBold.ttf'],
+        loadSystemFonts: false,
+        defaultFontFamily: 'Nunito',
       },
     };
 
@@ -101,7 +101,7 @@ export default async ({ req, res, log, error }) => {
     const pngData = resvg.render();
     const pngBuffer = pngData.asPng();
 
-    return res.send(pngBuffer.toString('base64'), 200, {
+    return res.send(pngBuffer, 200, {
       'Content-Type': 'image/png',
     });
   }
