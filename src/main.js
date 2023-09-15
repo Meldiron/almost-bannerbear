@@ -62,7 +62,7 @@ export default async ({ req, res, log, error }) => {
             @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700');
           </style>
           <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-            <use xlink:href="#image0_0_1" transform="matrix(0.000391243 0 0 0.00132802 -0.000790745 0)" />
+            <use xlink:href="#image0_0_1" />
           </pattern>
           <radialGradient id="paint0_radial_0_1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1163) rotate(90) scale(590)">
             <stop stop-color="#F02E65" />
@@ -79,7 +79,7 @@ export default async ({ req, res, log, error }) => {
           <clipPath id="clip0_0_1">
             <rect width="1200" height="630" fill="${themeColor}" />
           </clipPath>
-          <image id="image0_0_1" width="2560" xlink:href="data:image/png;base64,${logoBase64}" />
+          <image id="image0_0_1" height="70" xlink:href="data:image/png;base64,${logoBase64}" />
         </defs>
       </svg>
     `;
