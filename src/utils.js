@@ -72,7 +72,7 @@ export async function getIcon(name) {
       );
     }
 
-    return pathUnfinished + " " + pathImprovements.join(" ") + "/>";
+    return pathUnfinished + " " + pathImprovements.join(" ") + " />";
   });
 
   return pathsDesigned.join("\n");

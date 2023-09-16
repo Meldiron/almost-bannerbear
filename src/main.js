@@ -6,7 +6,7 @@ import {
 } from "./utils.js";
 import { generateSvg, renderPng } from "./og.js";
 
-export default async ({ req, res }) => {
+export default async ({ req, res, log }) => {
   // Endpoint with form for OG image URL generation
   if (req.path === "/") {
     const html = interpolate(getStaticFile("index.html"), {
@@ -45,6 +45,7 @@ export default async ({ req, res }) => {
     const png = renderPng(svg);
 
     // Return OG image
+    log(svg);
     return res.send(png, 200, {
       "Content-Type": "image/png",
     });
