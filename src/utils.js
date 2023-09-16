@@ -41,13 +41,18 @@ export function interpolate(template, values) {
  * @returns {Promise<string>} <path> element of the icon
  */
 export async function getIcon(name) {
-  const iconUrl = `https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/20/solid/${name}.svg`;
+  const iconUrl = `https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/24/outline/${name}.svg`;
   const iconSvg = (await axios.get(iconUrl)).data;
-  const iconSvgPath =
-    iconSvg.split("\n")[1].split("/>")[0] +
-    ` stroke="url(#paint1_linear_0_1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" transform="matrix(25 0 0 25 25 0) translate(24, 2)" />`;
 
-  return iconSvgPath;
+  const paths = iconSvg.split("\n").filter((line) => line.includes("<path"));
+
+  return paths
+    .map(
+      (path) =>
+        path.split("/>")[0] +
+        ` stroke="url(#paint1_linear_0_1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" transform="matrix(25 0 0 25 25 0) translate(24, 2)" />`,
+    )
+    .join("\n");
 }
 
 /**
