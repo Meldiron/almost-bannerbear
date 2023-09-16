@@ -3,7 +3,7 @@ import { getAbsolutePath } from "./utils.js";
 
 /**
  * Generates SVG of OG image based on configuratiion
- * @param {string} themeColor Hex color of background
+ * @param {bool} isDark If theme is dark. Defines background color and glow effect
  * @param {string} brandColor Hex color of foreground
  * @param {string} brandName Company name
  * @param {string} title OG image title
@@ -12,13 +12,15 @@ import { getAbsolutePath } from "./utils.js";
  * @returns {string} Generated SVG of OG image
  */
 export function generateSvg(
-  themeColor,
+  isDark,
   brandColor,
   brandName,
   title,
   subtitle,
   iconSvgPath,
 ) {
+  const themeColor = isDark ? "#030304" : "#f9fafb";
+
   return `
       <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect width="1200" height="630" fill="${themeColor}" />
@@ -47,11 +49,12 @@ export function generateSvg(
             <stop offset="1" stop-color="${brandColor}" stop-opacity="0" />
           </radialGradient>
           <linearGradient id="paint1_linear_0_1" x1="0" y1="0" x2="0" y2="18" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="${brandColor}" stop-opacity="0.1" />
-            <stop offset="0.5" stop-color="${brandColor}" stop-opacity="0.4" />
-            <stop offset="0.6" stop-color="${brandColor}" stop-opacity="0.7" />
-            <stop offset="0.7" stop-color="${brandColor}" stop-opacity="0.4" />
-            <stop offset="1" stop-color="${brandColor}" stop-opacity="0.1" />
+            <stop offset="0" stop-color="${brandColor}" stop-opacity="0.2"/>
+            <stop offset="0.3" stop-color="${brandColor}" stop-opacity="0.5"/>
+            <stop offset="0.45" stop-color="${brandColor}"  stop-opacity="0.85" />
+            <stop offset="0.55" stop-color="${brandColor}"  stop-opacity="0.85" />
+            <stop offset="0.7" stop-color="${brandColor}" stop-opacity="0.5"/>
+            <stop offset="1" stop-color="${brandColor}" stop-opacity="0.2"/>
           </linearGradient>
           <linearGradient id="paint2_linear_3_2" x1="267" y1="70" x2="267" y2="157" gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="${brandColor}" stop-opacity="0.2"/>

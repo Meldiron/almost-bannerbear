@@ -27,15 +27,15 @@ export default async ({ req, res, log }) => {
     const icon = decodeURIComponent(req.query.icon ?? "globe-alt");
 
     // Prepare before render
+    const isDark = theme === "dark";
     const iconSvgPath = await getIcon(icon);
-    const themeColor = theme === "dark" ? "#030304" : "#f9fafb";
     const urlText = ["home", ...url.split("/").filter((part) => part !== "")]
       .map((part) => uppercaseFirst(part))
       .join("   /   ");
 
     // Render OG image
     const svg = generateSvg(
-      themeColor,
+      isDark,
       brandColor,
       brandName,
       title,
