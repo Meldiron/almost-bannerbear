@@ -2,7 +2,7 @@ import { getIcon, uppercaseFirst, getStaticFile, interpolate } from "./utils.js"
 import { generateSvg, renderPng } from "./og.js";
 
 export default async ({ req, res }) => {
-  // Frontend to generate URL for OG image
+  // Endpoint with form for OG image URL generation
   if (req.path === "/") {
     const html = interpolate(getStaticFile("index.html"), {
       HOSTNAME: req.host,
