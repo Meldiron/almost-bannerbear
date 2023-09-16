@@ -46,13 +46,36 @@ export async function getIcon(name) {
 
   const paths = iconSvg.split("\n").filter((line) => line.includes("<path"));
 
-  return paths
-    .map(
-      (path) =>
-        path.split("/>")[0] +
-        ` stroke="url(#paint1_linear_0_1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" transform="matrix(25 0 0 25 25 0) translate(24, 2)" />`,
-    )
-    .join("\n");
+  const pathsDesigned = paths.map((path) => {
+    const pathUnfinished = path.split("/>")[0];
+    const pathImprovements = [];
+
+    if (!pathUnfinished.includes("stroke")) {
+      pathImprovements.push('stroke="url(#paint1_linear_0_1)"');
+    }
+
+    if (!pathUnfinished.includes("stroke-linejoin")) {
+      pathImprovements.push('stroke-linejoin="round"');
+    }
+
+    if (!pathUnfinished.includes("stroke-linecap")) {
+      pathImprovements.push('stroke-linecap="round"');
+    }
+
+    if (!pathUnfinished.includes("stroke-width")) {
+      pathImprovements.push('stroke-width="1"');
+    }
+
+    if (!pathUnfinished.includes("transform")) {
+      pathImprovements.push(
+        'transform="matrix(25 0 0 25 25 0) translate(24, 2)"',
+      );
+    }
+
+    return pathUnfinished + " " + pathImprovements.join(" ") + "/>";
+  });
+
+  return pathsDesigned.join("\n");
 }
 
 /**
