@@ -50,23 +50,23 @@ export async function getIcon(name) {
     const pathUnfinished = path.split("/>")[0];
     const pathImprovements = [];
 
-    if (!pathUnfinished.includes("stroke")) {
+    if (!pathUnfinished.includes("stroke=")) {
       pathImprovements.push('stroke="url(#paint1_linear_0_1)"');
     }
 
-    if (!pathUnfinished.includes("stroke-linejoin")) {
+    if (!pathUnfinished.includes("stroke-linejoin=")) {
       pathImprovements.push('stroke-linejoin="round"');
     }
 
-    if (!pathUnfinished.includes("stroke-linecap")) {
+    if (!pathUnfinished.includes("stroke-linecap=")) {
       pathImprovements.push('stroke-linecap="round"');
     }
 
-    if (!pathUnfinished.includes("stroke-width")) {
+    if (!pathUnfinished.includes("stroke-width=")) {
       pathImprovements.push('stroke-width="1"');
     }
 
-    if (!pathUnfinished.includes("transform")) {
+    if (!pathUnfinished.includes("transform=")) {
       pathImprovements.push(
         'transform="matrix(25 0 0 25 25 0) translate(24, 2)"',
       );
