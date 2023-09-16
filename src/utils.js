@@ -1,13 +1,14 @@
-import axios from 'axios';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import axios from "axios";
+import path from "path";
+import { fileURLToPath } from "url";
+import fs from "fs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /**
- * Returns the absolute path from relative path (based on main file)
- * @param {string} relativePath
+ * Returns the absolute path from relative path
+ * @param {string} relativePath path relative to main file
  * @returns {string} absulte path
  */
 export function getAbsolutePath(relativePath) {
@@ -15,22 +16,33 @@ export function getAbsolutePath(relativePath) {
 }
 
 /**
+ * Returns the contents of a file
+ * @param {string} fileName relative path to static folder
+ * @returns {string} Contents of static/{fileName}
+ */
+export function getStaticFile(fileName) {
+  return fs.readFileSync(path.join(staticFolder, fileName)).toString();
+}
+
+/**
  * Get SVG path for Heroicons icon
  * @param {string} name icon name
- * @returns {Promise<string>} 
+ * @returns {Promise<string>} <path> element of the icon
  */
 export async function getIcon(name) {
   const iconUrl = `https://raw.githubusercontent.com/tailwindlabs/heroicons/master/optimized/20/solid/${name}.svg`;
   const iconSvg = (await axios.get(iconUrl)).data;
-  const iconSvgPath = iconSvg.split("\n")[1].split('/>')[0] + ` stroke="url(#paint1_linear_0_1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" transform="matrix(25 0 0 25 25 0) translate(24, 2)" />`;
+  const iconSvgPath =
+    iconSvg.split("\n")[1].split("/>")[0] +
+    ` stroke="url(#paint1_linear_0_1)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" transform="matrix(25 0 0 25 25 0) translate(24, 2)" />`;
 
   return iconSvgPath;
 }
 
 /**
  * Uppercase first letter
- * @param {string} text
- * @returns {string}
+ * @param {string} text Text to uppercase
+ * @returns {string} Uppercased text
  */
 export function uppercaseFirst(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
