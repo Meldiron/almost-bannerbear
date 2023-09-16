@@ -15,8 +15,7 @@ Returns HTML website with form to build your OG image HTML tag.
 Sample `200` Response:
 
 ```html
-<!doctype html>
-...
+<!doctype html> ...
 ```
 
 ![HTML page](docs/builder.png)
@@ -27,11 +26,11 @@ Returns PNG of generated OG image.
 
 **Parameters**
 
-| Name   | Description                       | Location   | Type   | Sample Value                     |
-| ------ | --------------------------------- | ---------- | ------ | -------------------------------- |
-| title | Page title | URL | String | `Hello World`   |
-| url | URL of page to genrate subtitle  | FormURL | String | `/template` |
-| icon | Icon name from Heroicons to use in OG image design  | URL | String | `globe-alt` |
+| Name  | Description                                                                  | Location | Type   | Sample Value  |
+| ----- | ---------------------------------------------------------------------------- | -------- | ------ | ------------- |
+| title | Page title                                                                   | URL      | String | `Hello World` |
+| url   | URL of page to genrate subtitle                                              | FormURL  | String | `/template`   |
+| icon  | Icon name from [Heroicons](https://heroicons.com/) to use in OG image design | URL      | String | `globe-alt`   |
 
 **Response**
 
