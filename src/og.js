@@ -21,6 +21,20 @@ export function generateSvg(
 ) {
   const themeColor = isDark ? "#030304" : "#f9fafb";
 
+  const opacities = isDark
+    ? [0.2, 0.5, 0.85, 1, 0.85, 0.5, 0.2]
+    : [0.7, 0.4, 0.1, 0, 0.1, 0.4, 0.7];
+
+  const gradient = `
+    <stop offset="0" stop-color="${brandColor}" stop-opacity="${opacities[0]}"/>
+    <stop offset="0.3" stop-color="${brandColor}" stop-opacity="${opacities[1]}"/>
+    <stop offset="0.45" stop-color="${brandColor}"  stop-opacity="${opacities[2]}" />
+    <stop offset="0.5" stop-color="${brandColor}"  stop-opacity="${opacities[3]}" />
+    <stop offset="0.55" stop-color="${brandColor}"  stop-opacity="${opacities[4]}" />
+    <stop offset="0.7" stop-color="${brandColor}" stop-opacity="${opacities[5]}"/>
+    <stop offset="1" stop-color="${brandColor}" stop-opacity="${opacities[6]}"/>
+  `;
+
   return `
       <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect width="1200" height="630" fill="${themeColor}" />
@@ -49,20 +63,10 @@ export function generateSvg(
             <stop offset="1" stop-color="${brandColor}" stop-opacity="0" />
           </radialGradient>
           <linearGradient id="paint1_linear_0_1" x1="0" y1="0" x2="0" y2="18" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="${brandColor}" stop-opacity="0.2"/>
-            <stop offset="0.3" stop-color="${brandColor}" stop-opacity="0.5"/>
-            <stop offset="0.45" stop-color="${brandColor}"  stop-opacity="0.85" />
-            <stop offset="0.55" stop-color="${brandColor}"  stop-opacity="0.85" />
-            <stop offset="0.7" stop-color="${brandColor}" stop-opacity="0.5"/>
-            <stop offset="1" stop-color="${brandColor}" stop-opacity="0.2"/>
+            ${gradient}
           </linearGradient>
           <linearGradient id="paint2_linear_3_2" x1="267" y1="70" x2="267" y2="157" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="${brandColor}" stop-opacity="0.2"/>
-            <stop offset="0.3" stop-color="${brandColor}" stop-opacity="0.5"/>
-            <stop offset="0.45" stop-color="${brandColor}"  stop-opacity="0.85" />
-            <stop offset="0.55" stop-color="${brandColor}"  stop-opacity="0.85" />
-            <stop offset="0.7" stop-color="${brandColor}" stop-opacity="0.5"/>
-            <stop offset="1" stop-color="${brandColor}" stop-opacity="0.2"/>
+            ${gradient}
           </linearGradient>
           <clipPath id="clip0_0_1">
             <rect width="1200" height="630" fill="${themeColor}" />
