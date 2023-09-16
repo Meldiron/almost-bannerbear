@@ -1,10 +1,12 @@
-import { getIcon, uppercaseFirst, getStaticFile } from "./utils.js";
+import { getIcon, uppercaseFirst, getStaticFile, interpolate } from "./utils.js";
 import { generateSvg, renderPng } from "./og.js";
 
 export default async ({ req, res }) => {
   // Frontend to generate URL for OG image
   if (req.path === "/") {
-    const html = getStaticFile("index.html");
+    const html = interpolate(getStaticFile("index.html"), {
+      HOSTNAME: req.host,
+    });
     return res.send(html, 200, { "Content-Type": "text/html; charset=utf-8" });
   }
 

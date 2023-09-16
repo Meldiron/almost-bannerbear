@@ -25,6 +25,16 @@ export function getStaticFile(fileName) {
 }
 
 /**
+ * Interpolate string with dynamic values
+ * @param {string} template String with placeholders
+ * @param {Record<string, string | undefined>} values Values to interpolate
+ * @returns {string} Interpolated string
+ */
+export function interpolate(template, values) {
+  return template.replace(/{{([^}]+)}}/g, (_, key) => values[key] || '');
+}
+
+/**
  * Get SVG path for Heroicons icon
  * @param {string} name icon name
  * @returns {Promise<string>} <path> element of the icon

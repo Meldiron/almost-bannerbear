@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OG Image Generator</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/@appwrite.io/pink" />
+    <link rel="stylesheet" href="https://unpkg.com/@appwrite.io/pink-icons" />
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+  </head>
+  <body>
+    <main class="main-content">
+      <div class="top-cover u-padding-block-end-56">
+        <div class="container">
+          <div
+            class="u-flex u-gap-16 u-flex-justify-center u-margin-block-start-16"
+          >
+            <h1 class="heading-level-1">OG Image Generator</h1>
+            <code class="u-un-break-text"></code>
+          </div>
+          <p
+            class="body-text-1 u-normal u-margin-block-start-8"
+            style="max-width: 50rem"
+          >
+            Use this builder to preview generated OG image, and copy URL to use
+            in your web app.
+          </p>
+        </div>
+      </div>
+      <div x-data="{}" class="container u-margin-block-start-negative-56">
+        <div class="card">
+          <section class="grid-1-1 u-column-gap-16 u-row-gap-32" id="design">
+            <div class="grid-1-1-col-1 u-max-width-450">
+              <form class="form">
+                <ul class="form-list">
+                  <li class="form-item">
+                    <label class="label" for="title">Title</label>
+                    <div class="input-text-wrapper">
+                      <input
+                        x-model="$store.form.title"
+                        type="text"
+                        class="input-text u-padding-inline-end-56"
+                        placeholder="Funding Announcment: Round A"
+                        name="title"
+                      />
+                    </div>
+                  </li>
+                  <li class="form-item">
+                    <label class="label" for="url">URL</label>
+                    <div class="input-text-wrapper">
+                      <input
+                        x-model="$store.form.url"
+                        type="text"
+                        class="input-text u-padding-inline-end-56"
+                        placeholder="/funding/round-a"
+                        name="url"
+                      />
+                    </div>
+                  </li>
+                  <li class="form-item">
+                    <label class="label" for="icon">Icon</label>
+                    <div class="input-text-wrapper">
+                      <input
+                        x-model="$store.form.icon"
+                        type="text"
+                        class="input-text u-padding-inline-end-56"
+                        placeholder="globe-alt"
+                        name="icon"
+                      />
+                    </div>
+                  </li>
+                </ul>
+                <section class="alert is-info u-margin-block-start-16">
+                  <div class="alert-grid">
+                    <span class="icon-info" aria-hidden="true"></span>
+
+                    <div class="alert-content">
+                      <h6 class="alert-title">More customization</h6>
+                      <p class="alert-message">
+                        In settings of your function, you can configure
+                        environment variables to also change
+                        <b>website name</b>, <b>brand color</b> and
+                        <b>theme</b>.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              </form>
+            </div>
+            <div class="grid-1-1-col-2">
+              <img
+                style="border-radius: var(--border-radius-medium)"
+                :src="$store.form.generateUrl()"
+              />
+
+              <form class="form u-margin-block-start-16">
+                <ul class="form-list">
+                  <li class="form-item">
+                    <label class="label" for="url">Generated URL</label>
+                    <div class="interactive-text-output">
+                      <span
+                        class="text u-break-word"
+                        x-text="$store.form.generateUrl()"
+                      ></span>
+                      <div class="interactive-text-output-buttons">
+                        <button
+                          type="button"
+                          x-on:click="navigator.clipboard.writeText($store.form.generateUrl())"
+                          class="interactive-text-output-button is-hidden"
+                          aria-label="Copy URL"
+                        >
+                          <span
+                            class="icon-duplicate"
+                            aria-hidden="true"
+                          ></span>
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="form-item">
+                    <label class="label" for="url">Generated HTML</label>
+                    <div class="interactive-text-output">
+                      <span
+                        class="text u-break-word"
+                        x-text="$store.form.generateHtml()"
+                      ></span>
+                      <div class="interactive-text-output-buttons">
+                        <button
+                          type="button"
+                          class="interactive-text-output-button is-hidden"
+                          x-on:click="navigator.clipboard.writeText($store.form.generateHtml())"
+                          aria-label="Copy HTML"
+                        >
+                          <span
+                            class="icon-duplicate"
+                            aria-hidden="true"
+                          ></span>
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener("alpine:init", async () => {
+        Alpine.store("form", {
+          title: "Hello World",
+          url: "/template",
+          icon: "globe-alt",
+
+          generateUrl() {
+            let url = "https://{{HOSTNAME}}/image.png";
+            url += "?title=" + encodeURIComponent(this.title);
+            url += "&url=" + encodeURIComponent(this.url);
+            url += "&icon=" + encodeURIComponent(this.icon);
+            return url;
+          },
+
+          generateHtml() {
+            const url = this.generateUrl();
+            const html = '<meta property="og:image" content="' + url + '">';
+            return html;
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
