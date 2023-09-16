@@ -70,7 +70,7 @@ export function generateSvg(
             <stop offset="0.703125" stop-color="${brandColor}" stop-opacity="0" />
             <stop offset="1" stop-color="${brandColor}" stop-opacity="0" />
           </radialGradient>
-          <linearGradient id="paint1_linear_0_1" x1="0" y1="0" x2="0" y2="24" gradientUnits="userSpaceOnUse">
+          <linearGradient id="paint1_linear_0_1" x1="0" y1="0" x2="0" y2="25" gradientUnits="userSpaceOnUse">
             ${gradientIcon}
           </linearGradient>
           <linearGradient id="paint2_linear_3_2" x1="267" y1="70" x2="267" y2="157" gradientUnits="userSpaceOnUse">
