@@ -1,36 +1,48 @@
-# ⚡ Node.js Starter Function
+![Cover](docs/og-image.png)
 
-A simple starter function. Edit `src/main.js` to get started and create something awesome! 🚀
+# ⚡ Node.js OG Image Generator Function
+
+Function to dynamically generate OG images for your web app.
 
 ## 🧰 Usage
 
+Demo video:
+
+![Demo](docs/demo.mp4)
+
 ### GET /
 
-- Returns a "Hello, World!" message.
+Returns HTML website with form to build your OG image HTML tag.
 
 **Response**
 
 Sample `200` Response:
 
-```text
-Hello, World!
+```html
+<!doctype html>
+...
 ```
 
-### POST, PUT, PATCH, DELETE /
+![HTML page](docs/builder.png)
 
-- Returns a "Learn More" JSON response.
+### GET /image.png
+
+Returns PNG of generated OG image.
+
+**Parameters**
+
+| Name   | Description                       | Location   | Type   | Sample Value                     |
+| ------ | --------------------------------- | ---------- | ------ | -------------------------------- |
+| title | Page title | URL | String | `Hello World`   |
+| url | URL of page to genrate subtitle  | FormURL | String | `/template` |
+| icon | Icon name from Heroicons to use in OG image design  | URL | String | `globe-alt` |
 
 **Response**
 
-Sample `200` Response:
+`200` Response:
 
 ```json
-{
-  "motto": "Build Fast. Scale Big. All in One Place.",
-  "learn": "https://appwrite.io/docs",
-  "connect": "https://appwrite.io/discord",
-  "getInspired": "https://builtwith.appwrite.io"
-}
+(image buffer)
 ```
 
 ## ⚙️ Configuration
@@ -45,4 +57,32 @@ Sample `200` Response:
 
 ## 🔒 Environment Variables
 
-No environment variables required.
+### THEME
+
+Toggle between dark and light theme for OG image.
+
+| Question      | Answer            |
+| ------------- | ----------------- |
+| Required      | No                |
+| Sample Value  | `dark` or `light` |
+| Default Value | `dark`            |
+
+### BRAND_COLOR
+
+Hex color of your brand to personalize OG image color scheme.
+
+| Question      | Answer    |
+| ------------- | --------- |
+| Required      | No        |
+| Sample Value  | `#3b82f6` |
+| Default Value | `#f02e65` |
+
+### BRAND_NAME
+
+Name of your company used when generating OG image.
+
+| Question      | Answer     |
+| ------------- | ---------- |
+| Required      | No         |
+| Sample Value  | `Appwrite` |
+| Default Value | `Website`  |
