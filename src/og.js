@@ -20,19 +20,19 @@ export function generateSvg(
   iconSvgPath,
 ) {
   const themeColor = isDark ? "#030304" : "#f9fafb";
+  const themeColorContrast = isDark ? "#f9fafb" : "#030304";
 
   const opacities = isDark
-    ? [0.2, 0.5, 0.85, 1, 0.85, 0.5, 0.2]
-    : [0.7, 0.4, 0.1, 0, 0.1, 0.4, 0.7];
+    ? [0.2, 0.5, 0.85, 0.85, 0.5, 0.2]
+    : [0.7, 0.4, 0.1, 0.1, 0.4, 0.7];
 
   const gradient = `
     <stop offset="0" stop-color="${brandColor}" stop-opacity="${opacities[0]}"/>
     <stop offset="0.3" stop-color="${brandColor}" stop-opacity="${opacities[1]}"/>
     <stop offset="0.45" stop-color="${brandColor}"  stop-opacity="${opacities[2]}" />
-    <stop offset="0.5" stop-color="${brandColor}"  stop-opacity="${opacities[3]}" />
-    <stop offset="0.55" stop-color="${brandColor}"  stop-opacity="${opacities[4]}" />
-    <stop offset="0.7" stop-color="${brandColor}" stop-opacity="${opacities[5]}"/>
-    <stop offset="1" stop-color="${brandColor}" stop-opacity="${opacities[6]}"/>
+    <stop offset="0.55" stop-color="${brandColor}"  stop-opacity="${opacities[3]}" />
+    <stop offset="0.7" stop-color="${brandColor}" stop-opacity="${opacities[4]}"/>
+    <stop offset="1" stop-color="${brandColor}" stop-opacity="${opacities[5]}"/>
   `;
 
   return `
@@ -47,7 +47,7 @@ export function generateSvg(
             <tspan x="70" y="450">${subtitle}</tspan>
           </text>
   
-          <text fill="white" xml:space="preserve" style="white-space: pre" font-size="72" font-weight="bold" letter-spacing="0.025em">
+          <text fill="${themeColorContrast}" xml:space="preserve" style="white-space: pre" font-size="72" font-weight="bold" letter-spacing="0.025em">
             <tspan x="70" y="544.688">${title}</tspan>
           </text>
   
@@ -62,7 +62,7 @@ export function generateSvg(
             <stop offset="0.703125" stop-color="${brandColor}" stop-opacity="0" />
             <stop offset="1" stop-color="${brandColor}" stop-opacity="0" />
           </radialGradient>
-          <linearGradient id="paint1_linear_0_1" x1="0" y1="0" x2="0" y2="18" gradientUnits="userSpaceOnUse">
+          <linearGradient id="paint1_linear_0_1" x1="0" y1="0" x2="0" y2="24" gradientUnits="userSpaceOnUse">
             ${gradient}
           </linearGradient>
           <linearGradient id="paint2_linear_3_2" x1="267" y1="70" x2="267" y2="157" gradientUnits="userSpaceOnUse">
