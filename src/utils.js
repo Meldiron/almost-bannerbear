@@ -5,7 +5,7 @@ import fs from "fs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const staticFolder = path.join(__dirname, '../static');
+const staticFolder = path.join(__dirname, "../static");
 
 /**
  * Returns the absolute path from relative path
@@ -32,7 +32,7 @@ export function getStaticFile(fileName) {
  * @returns {string} Interpolated string
  */
 export function interpolate(template, values) {
-  return template.replace(/{{([^}]+)}}/g, (_, key) => values[key] || '');
+  return template.replace(/{{([^}]+)}}/g, (_, key) => values[key] || "");
 }
 
 /**

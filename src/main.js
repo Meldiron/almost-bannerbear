@@ -1,4 +1,9 @@
-import { getIcon, uppercaseFirst, getStaticFile, interpolate } from "./utils.js";
+import {
+  getIcon,
+  uppercaseFirst,
+  getStaticFile,
+  interpolate,
+} from "./utils.js";
 import { generateSvg, renderPng } from "./og.js";
 
 export default async ({ req, res }) => {
