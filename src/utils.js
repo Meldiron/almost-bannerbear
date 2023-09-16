@@ -68,7 +68,7 @@ export async function getIcon(name) {
 
     if (!pathUnfinished.includes("transform=")) {
       pathImprovements.push(
-        'transform="matrix(25 0 0 25 25 0) translate(24, 2)"',
+        'transform="matrix(25 0 0 25 25 0) translate(22, 0)"',
       );
     }
 
