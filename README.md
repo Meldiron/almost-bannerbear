@@ -6,10 +6,6 @@ Function to dynamically generate OG images for your web app.
 
 ## 🧰 Usage
 
-Demo video:
-
-![Demo](docs/demo.mp4)
-
 ### GET /
 
 Returns HTML website with form to build your OG image HTML tag.
@@ -86,3 +82,7 @@ Name of your company used when generating OG image.
 | Required      | No         |
 | Sample Value  | `Appwrite` |
 | Default Value | `Website`  |
+
+## 📽️ Demo
+
+https://github.com/Meldiron/og-image-generator/assets/19310830/726e1d96-e594-4be3-898a-6400bba82dc9
