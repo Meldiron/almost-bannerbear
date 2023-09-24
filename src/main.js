@@ -51,6 +51,13 @@ export default async ({ req, res, log }) => {
     });
   }
 
-  // Redirect to frontend instead of 404
-  return res.redirect("/");
-};
+  // Redirect to the OG image form if the path doesn't match any known routes
+      return res.redirect("/");
+    } catch (error) {
+      // Handle errors by logging and sending an error response to the client
+      console.error("Error:", error);
+      return res.send("Internal Server Error", 500, {
+        "Content-Type": "text/plain",
+      });
+    }
+  }
