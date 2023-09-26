@@ -1,8 +1,16 @@
 import { Resvg } from "@resvg/resvg-js";
 import { getAbsolutePath } from "./utils.js";
 
+// Constants for magic numbers
+const SUBTITLE_X = 70;
+const SUBTITLE_Y = 450;
+const TITLE_X = 70;
+const TITLE_Y = 544.688;
+const BRAND_NAME_X = 70;
+const BRAND_NAME_Y = 139.682;
+
 /**
- * Generates SVG of OG image based on configuratiion
+ * Generates SVG of OG image based on configuration
  * @param {bool} isDark If theme is dark. Defines background color and glow effect
  * @param {string} brandColor Hex color of foreground
  * @param {string} brandName Company name
@@ -52,14 +60,14 @@ export function generateSvg(
           ${iconSvgPath}
           
           <text fill="${brandColor}" xml:space="preserve" style="white-space: pre" font-size="24" font-weight="600" letter-spacing="0.025em">
-            <tspan x="70" y="450">${subtitle}</tspan>
+            <tspan x="${SUBTITLE_X}" y="${SUBTITLE_Y}">${subtitle}</tspan>
           </text>
   
           <text fill="${themeColorContrast}" xml:space="preserve" style="white-space: pre" font-size="72" font-weight="bold" letter-spacing="0.025em">
-            <tspan x="70" y="544.688">${title}</tspan>
+            <tspan x="${TITLE_X}" y="${TITLE_Y}">${title}</tspan>
           </text>
   
-          <text fill="url(#paint2_linear_3_2)" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="72" font-weight="bold" letter-spacing="0.025em"><tspan x="70" y="139.682">${brandName.toUpperCase()}</tspan></text>
+          <text fill="url(#paint2_linear_3_2)" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="72" font-weight="bold" letter-spacing="0.025em"><tspan x="${BRAND_NAME_X}" y="${BRAND_NAME_Y}">${brandName.toUpperCase()}</tspan></text>
         </g>
         <defs>
           <style type="text/css">
@@ -90,24 +98,30 @@ export function generateSvg(
  * @returns {Buffer} PNG Buffer
  */
 export function renderPng(svg) {
-  const resvg = new Resvg(svg, {
-    background: "rgba(0,0,0,1)",
-    fitTo: {
-      mode: "width",
-      value: 1200,
-    },
-    font: {
-      fontFiles: [
-        getAbsolutePath("../fonts/Nunito-Bold.ttf"),
-        getAbsolutePath("../fonts/Nunito-SemiBold.ttf"),
-      ],
-      loadSystemFonts: true,
-      defaultFontFamily: "Nunito",
-    },
-  });
+  try {
+    const resvg = new Resvg(svg, {
+      background: "rgba(0,0,0,1)",
+      fitTo: {
+        mode: "width",
+        value: 1200,
+      },
+      font: {
+        fontFiles: [
+          getAbsolutePath("../fonts/Nunito-Bold.ttf"),
+          getAbsolutePath("../fonts/Nunito-SemiBold.ttf"),
+        ],
+        loadSystemFonts: true,
+        defaultFontFamily: "Nunito",
+      },
+    });
 
-  const pngData = resvg.render();
-  const pngBuffer = pngData.asPng();
+    const pngData = resvg.render();
+    const pngBuffer = pngData.asPng();
 
-  return pngBuffer;
+    return pngBuffer;
+  } catch (error) {
+    // Handle any potential errors gracefully
+    console.error("Error rendering PNG:", error);
+    throw error;
+  }
 }
